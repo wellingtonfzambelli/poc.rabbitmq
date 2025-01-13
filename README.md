@@ -36,3 +36,6 @@ http://localhost:15672/
 
 9 - Background service consumes the message
 ![image](https://github.com/user-attachments/assets/275b073c-cb20-4906-b05f-37254003491f)
+
+10 - RabbiMQ
+![image](https://github.com/user-attachments/assets/28db7622-1f11-4f7e-8b76-cb184e9ed698)

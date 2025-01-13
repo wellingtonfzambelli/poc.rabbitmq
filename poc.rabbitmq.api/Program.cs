@@ -42,7 +42,7 @@ app.MapPost("/user", async (User user, IRabbitMQService reabbitMQService, Cancel
     try
     {
         await reabbitMQService.ProduceAsync(JsonSerializer.Serialize(user), ct);
-        return Results.Ok("6");
+        return Results.Created();
     }
     catch (Exception ex)
     {

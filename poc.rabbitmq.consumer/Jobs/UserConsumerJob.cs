@@ -18,23 +18,7 @@ internal sealed class UserConsumerJob : BackgroundService
     protected override async Task ExecuteAsync(CancellationToken cancellationToken)
     {
         _logger.LogInformation("UserConsumerJob started.");
-
-        try
-        {
-            await _rabbitMQService.ConsumeAsync(cancellationToken);
-        }
-        catch (OperationCanceledException)
-        {
-            _logger.LogWarning("UserConsumerJob execution was canceled.");
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "An error occurred in UserConsumerJob.");
-        }
-        finally
-        {
-            _logger.LogInformation("UserConsumerJob stopped.");
-        }
+        await _rabbitMQService.ConsumeAsync(cancellationToken);
     }
 
     public override async Task StopAsync(CancellationToken cancellationToken)

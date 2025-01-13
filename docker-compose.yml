@@ -1,25 +1,5 @@
 services:
 
-  api:
-    build:
-      context: .
-      dockerfile: poc.rabbitmq.api/Dockerfile
-    container_name: "api"
-    environment:
-      ASPNETCORE_ENVIRONMENT: "Development" # Enable Swagger
-      # RabbitMQSettings__HostName: "rabbitmq"
-      # RabbitMQSettings__UserName: "guest"
-      # RabbitMQSettings__Password: "guest"
-      # RabbitMQSettings__Port: "15672"
-    ports:
-      - "8080:8080"
-    depends_on:
-      - rabbitmq
-    networks:
-      - poc-rabbitmq
-
-
-
   rabbitmq:
     image: rabbitmq:3-management
     container_name: rabbitmq
@@ -29,14 +9,8 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
-    networks:
-      - poc-rabbitmq
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
 
 volumes:
   rabbitmq_data:
-
-networks:
-  poc-rabbitmq:
-    driver: bridge

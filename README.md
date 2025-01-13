@@ -1,9 +1,9 @@
 # About
 
 # Run the application
-1 - Install Docker Desktop _(if you don't have it)_
-2 - On the terminal open the directory of this project where the "docker-compose.yml" file is
-3 - Run the docker command bellow
+1 - Install Docker Desktop _(if you don't have it)_   
+2 - On the terminal open the directory of this project where the "docker-compose.yml" file is   
+3 - Run the docker command bellow   
 ``` terminal
 docker compose up -d
 ```

@@ -9,7 +9,6 @@ internal sealed class UserConsumerJob : BackgroundService
     private readonly IRabbitMQService _rabbitMQService;
     private readonly ILogger<UserConsumerJob> _logger;
 
-
     public UserConsumerJob(IRabbitMQService rabbitMQService, ILogger<UserConsumerJob> logger)
     {
         _rabbitMQService = rabbitMQService;

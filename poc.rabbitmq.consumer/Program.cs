@@ -13,6 +13,9 @@ builder.Services.AddHostedService<UserConsumerJob>();
 builder.Services.Configure<RabbitMQSettings>(builder.Configuration.GetSection("RabbitMQSettings"));
 builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<RabbitMQSettings>>().Value);
 
+builder.Services.Configure<DirectRabbitMQSettings>(builder.Configuration.GetSection("DirectRabbitMQSettings"));
+builder.Services.AddSingleton(sp => sp.GetRequiredService<IOptions<DirectRabbitMQSettings>>().Value);
+
 builder.Services.AddTransient<IRabbitMQService, RabbitMQService>();
 
 builder.Logging.ClearProviders();

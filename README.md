@@ -1,4 +1,6 @@
 # About
+Here’s an improved and detailed explanation of the concept you're trying to demonstrate. This example shows how to use RabbitMQ with .NET 8, where an API publishes a message to a RabbitMQ queue, and a .NET Background Service consumes the messages produced by the API.
+
 
 # Run the application
 1 - Install Docker Desktop _(if you don't have it)_   

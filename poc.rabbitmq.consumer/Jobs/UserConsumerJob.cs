@@ -1,0 +1,46 @@
+﻿using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using poc.rabbitmq.crosscutting.MessageBroker.RabbitMQ;
+
+namespace poc.rabbitmq.consumer.Jobs;
+
+internal sealed class UserConsumerJob : BackgroundService
+{
+    private readonly IRabbitMQService _rabbitMQService;
+    private readonly ILogger<UserConsumerJob> _logger;
+
+
+    public UserConsumerJob(IRabbitMQService rabbitMQService, ILogger<UserConsumerJob> logger)
+    {
+        _rabbitMQService = rabbitMQService;
+        _logger = logger;
+    }
+
+    protected override async Task ExecuteAsync(CancellationToken cancellationToken)
+    {
+        _logger.LogInformation("UserConsumerJob started.");
+
+        try
+        {
+            await _rabbitMQService.ConsumeAsync(cancellationToken);
+        }
+        catch (OperationCanceledException)
+        {
+            _logger.LogWarning("UserConsumerJob execution was canceled.");
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An error occurred in UserConsumerJob.");
+        }
+        finally
+        {
+            _logger.LogInformation("UserConsumerJob stopped.");
+        }
+    }
+
+    public override async Task StopAsync(CancellationToken cancellationToken)
+    {
+        _logger.LogInformation("UserConsumerJob is stopping...");
+        await base.StopAsync(cancellationToken);
+    }
+}
